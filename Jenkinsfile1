@@ -28,7 +28,7 @@ pipeline{
 
      stage('Docker Image Creation'){
                steps {
-                      sh 'docker build -t shankerchauhan/projects:insurance  .'
+                      sh 'docker build -t shankerchauhan/projects:latest .'
            }
         }
  
