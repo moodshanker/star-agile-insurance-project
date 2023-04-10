@@ -38,5 +38,5 @@ pipeline{
                    sh 'docker push shankerchauhan/projects:latest'
 		   }
                 }
-             } 
-          } 
+            
+          
