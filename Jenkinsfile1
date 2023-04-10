@@ -41,7 +41,7 @@ pipeline{
               } 
    stage('Deploy application using ansible'){
                steps {
-               ansiblePlaybook credentialsId: 'prod-server', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible1-platbook.yml'
+               ansiblePlaybook credentialsId: 'prod-server', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'deploy-playbook.yml'
                       }
                    }
 	        } 
