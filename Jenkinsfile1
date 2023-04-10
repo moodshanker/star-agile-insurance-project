@@ -31,13 +31,18 @@ pipeline{
                       sh 'docker build -t shankerchauhan/projects:latest .'
            }
         }
- stage('Push Image to DockerHub'){
+    stage('Push Image to DockerHub'){
                steps {
                    withCredentials([usernamePassword(credentialsId: 'Docker-hub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         	   sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
                    sh 'docker push shankerchauhan/projects:latest'
 		   }
                 }
-             } 
-	  } 
-	} 
+              } 
+   stage('Deploy application using ansible'){
+               steps {
+                     ansiblePlaybook credentialsId: 'prod-server', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'insurancedeploy_playbook.yml'
+                      }
+                   }
+	       } 
+	       }
